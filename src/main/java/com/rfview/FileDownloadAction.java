@@ -35,7 +35,7 @@ public class FileDownloadAction extends BaseActionSupport {
     public InputStream getFileInputStream() {
         return fileInputStream;
     }
-    
+
     public String execute() {
         filelist = mgmt.getAllLogFiles();
         if (sessionMap != null) {

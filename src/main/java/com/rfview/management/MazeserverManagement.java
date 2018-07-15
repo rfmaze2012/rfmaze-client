@@ -235,13 +235,16 @@ public class MazeserverManagement implements MazeserverManagementMBean {
     public LogFile[] getAllLogFiles() {
         File file = new File(getLogFolder());
         String[] files = file.list(new FilenameFilter() {
-
             @Override
             public boolean accept(File dir, String name) {
                 return name.matches(".*\\.cfg.log[0-9]{0,2}");
             }
         });
 
+        if ( files == null || files.length == 0 ) {
+            return new LogFile[0];
+        }
+        
         LogFile[] resultset = new LogFile[files.length];
         int i = 0;
         String logFileDir = getLogFolder();

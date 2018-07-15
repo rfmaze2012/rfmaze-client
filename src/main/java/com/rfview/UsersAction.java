@@ -121,17 +121,9 @@ public class UsersAction extends BaseActionSupport {
             try {
                 dbAccess.deleteUser(uid);
                 resetAttenuration(uid);
-                setWarningMessage(
-                        "WARN: The attenuation value set by deleted user has been reset to default value! If process is not running the attenuation values will not be reset.");
+                setWarningMessage("WARN: The attenuation value set by deleted user has been reset to default value! If process is not running the attenuation values will not be reset.");
             } catch (SQLException e) {
                 logger.error("SQL Exception", e);
-            }
-
-            for (int i = 0; i < users.size(); i++) {
-                if (users.get(i).getId().equals(uid)) {
-                    users.remove(i);
-                    break;
-                }
             }
         } else if (isEdit()) {
             try {
