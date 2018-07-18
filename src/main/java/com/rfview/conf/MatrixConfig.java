@@ -279,7 +279,8 @@ public class MatrixConfig {
         Properties props = new Properties();
         InputStream is = null;
         try {
-            is = new FileInputStream(new File(CONF_DIR + File.separator + hardware + ".cfg"));
+            String fileName = CONF_DIR + File.separator + hardware.replaceAll(" ", "\\ ") + ".cfg";
+            is = new FileInputStream(new File(fileName));
             props.load(is);
         } catch (IOException e) {
             logger.error("Failed to open configure file " + (CONF_DIR + File.separator + hardware + ".cfg") );

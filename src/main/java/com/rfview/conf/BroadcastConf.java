@@ -73,7 +73,8 @@ public class BroadcastConf {
                 if (data.matches("RFMAZE\\s*=\\s*.*\\d$")) {
                     String[] tokens = data.split(" ");
                     if (!tokens[2].trim().equals("RFMAZE_LIST")) {
-                        result.add(tokens[2].trim());
+
+                        result.add(getServerName(tokens));
                     }
                 }
                 line = br.readLine();
@@ -303,5 +304,15 @@ public class BroadcastConf {
         } catch (IOException e) {
             return "127.0.0.1";
         }
+    }
+
+    private String getServerName(String[] tokens) {
+        String name =  tokens[2].trim();
+        if ( tokens.length > 5 ) {
+            for (int i = 3; i < tokens.length - 2; i++ ) {
+                name += " " + tokens[i];
+            }
+        }
+        return name;
     }
 }
